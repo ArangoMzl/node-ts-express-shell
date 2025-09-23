@@ -12,7 +12,12 @@ export class JwtAdapter {
             });
         });
     }
-    static validateToken(token: string): boolean {
-        return true;
+    static async validateToken(token: string) {
+        return new Promise((resolve, reject) => {
+            jwt.verify(token, envs.JWT_SEED, (err, payload) => {
+                if (err) return resolve(null);
+                resolve(payload);
+            });
+        });
     }
 }
