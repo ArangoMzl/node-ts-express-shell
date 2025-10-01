@@ -14,7 +14,7 @@ export class CategoryController {
 
   createCategory = (req: Request, res: Response) => {
     try {
-      const user = req.body.user;
+      const user = req.body.user.id;
       if (!user) return res.status(401).json({ error: "Invalid token - User" });
 
       const [error, categoryDto] = CreateCategoryDto.create(req.body);
